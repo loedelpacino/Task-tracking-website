@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formstill – Profil</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="dashboard-body">
+  <div class="dashboard">
+    <aside class="sidebar">
+      <a href="home.html" class="logo">formStill</a>
+      <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="teamspaces.html">Teamspaces</a></li>
+        <li><a href="profile.html" class="active">Profil</a></li>
+      </ul>
+    </aside>
+
+    <div class="main">
+      <header class="topbar">
+  <div class="title">Profil</div>
+  <div class="topbar-right">
+    <div class="notif-wrap">
+      <button id="notifBell" class="notif-bell" title="Bildirimler">🔔
+        <span id="notifCount" class="badge hidden">0</span>
+      </button>
+      <div id="notifPanel" class="notif-panel hidden">
+        <div class="notif-head">Bildirimler</div>
+        <div id="notifList" class="notif-list">Yükleniyor…</div>
+        <div class="notif-head">Davetler</div>
+        <div id="inviteList" class="notif-list">Yükleniyor…</div>
+      </div>
+    </div>
+
+    <div class="profile" title="Profil">
+      <img src="placeholder_light_gray_block.png" alt="Profil" id="profileImage" />
+      <span id="loginText">Giriş Yapın</span>
+    </div>
+  </div>
+</header>
+
+
+      <div class="content">
+        <div class="view-container">
+          <h2>Merhaba, <span id="profile-name">...</span></h2>
+          <p><strong>E-posta:</strong> <span id="profile-email">...</span></p>
+          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+            <button id="themeToggle" class="btn">Tema Değiştir</button>
+            <button id="editNameBtn" class="btn">Adını Güncelle</button>
+            <button id="logoutBtn" class="btn danger">Çıkış Yap</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="firebase-config.js"></script>
+  <script type="module" src="profile.js"></script>
+  <script type="module" src="notifications.js"></script>
+  <script type="module" src="theme.js"></script>
+
+
+</body>
+</html>

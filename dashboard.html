@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Personal Board – formStill</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="dashboard-body">
+  <div class="dashboard">
+    <aside class="sidebar">
+      <a href="home.html" class="logo">formStill</a>
+      <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="teamspaces.html">Teamspaces</a></li>
+        <li><a href="profile.html">Profil</a></li>
+      </ul>
+    </aside>
+
+    <main class="main">
+      <!-- TOPBAR -->
+      <header class="topbar">
+        <div class="title">Personal Board</div>
+        <div class="topbar-right">
+          <div class="notif-wrap">
+            <button id="notifBell" class="notif-bell" title="Bildirimler">
+              🔔 <span id="notifCount" class="badge hidden">0</span>
+            </button>
+            <div id="notifPanel" class="notif-panel hidden">
+              <div class="notif-head">Bildirimler</div>
+              <div id="notifList" class="notif-list">Yükleniyor…</div>
+              <div class="notif-head">Davetler</div>
+              <div id="inviteList" class="notif-list">Yükleniyor…</div>
+            </div>
+          </div>
+          <button id="logoutBtn" class="ghost small">Çıkış</button>
+        </div>
+      </header>
+
+      <div class="content">
+        <!-- ORTAK SEKME ŞERİDİ -->
+        <div class="view-switch" style="justify-content:center; margin: 6px 0 14px;">
+          <button class="switch-btn active" data-view="board">Board</button>
+          <button class="switch-btn" data-view="feed">Feed</button>
+          <span id="scope-badge" class="scope-badge">Personal</span>
+        </div>
+
+        <!-- BOARD -->
+        <section id="boardView" class="view active">
+          <div class="board">
+            <div class="board-controls">
+              <input id="quickTaskTitle" type="text" placeholder="Yeni kart başlığı…" />
+              <select id="quickTaskStatus">
+                <option value="todo">To-Do</option>
+                <option value="in_progress">In Progress</option>
+                <option value="done">Done</option>
+              </select>
+              <button id="quickTaskAdd" class="btn primary">Ekle</button>
+            </div>
+
+            <div class="board-columns">
+              <div class="board-col">
+                <h3>To-Do</h3>
+                <div id="list-todo" class="task-list droppable" data-status="todo"></div>
+              </div>
+              <div class="board-col">
+                <h3>In Progress</h3>
+                <div id="list-in_progress" class="task-list droppable" data-status="in_progress"></div>
+              </div>
+              <div class="board-col">
+                <h3>Done</h3>
+                <div id="list-done" class="task-list droppable" data-status="done"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- FEED VIEW -->
+<section id="feedView" class="view">
+  <div class="feed">
+
+    <!-- Composer Card -->
+    <div class="composer-card">
+      <div class="composer-header">
+        <div class="avatar-circle" id="composerAvatar">?</div>
+        <div class="who">
+          <div class="name" id="composerName">Kullanıcı</div>
+          <!-- Audience (Teamspace) pill -->
+          <select id="feedTeamSelect" class="audience-pill">
+            <option value="" selected disabled>Teamspace</option>
+          </select>
+        </div>
+      </div>
+
+      <textarea id="report-input" class="composer-input"
+        rows="3" placeholder="Ne düşünüyorsun?"></textarea>
+
+      <!-- Alt araç çubuğu -->
+      <div class="composer-footer">
+        <div class="left">
+          <button id="tagBtn" class="ghost" title="Kişi etiketle">👥 Etiketle</button>
+
+          <!-- Etiket açılır paneli -->
+          <div id="tagPanel" class="tag-panel hidden">
+            <div class="tag-panel-title">Üyeleri Etiketle</div>
+            <div id="tagList" class="tag-list"></div>
+          </div>
+
+          <!-- Seçili etiketler -->
+          <div id="tagChips" class="chips"></div>
+        </div>
+
+        <button id="report-submit" class="btn primary" disabled>Paylaş</button>
+      </div>
+    </div>
+
+    <!-- Akış -->
+    <div id="feed-list" class="feed-list"></div>
+  </div>
+</section>
+
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="dashboard.js"></script>
+  <script type="module" src="notifications.js"></script>
+  <script type="module" src="theme.js"></script>
+
+</body>
+</html>

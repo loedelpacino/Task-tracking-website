@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Formstill – Teamspaces</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="dashboard-body">
+  <div class="dashboard">
+    <aside class="sidebar">
+      <a href="home.html" class="logo">formStill</a>
+      <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a class="active" href="teamspaces.html">Teamspaces</a></li>
+        <li><a href="profile.html">Profil</a></li>
+      </ul>
+    </aside>
+
+    <div class="main">
+      <header class="topbar">
+  <div class="title">Teamspace Yönetimi</div>
+  <div class="topbar-right">
+    <div class="notif-wrap">
+      <button id="notifBell" class="notif-bell" title="Bildirimler">🔔
+        <span id="notifCount" class="badge hidden">0</span>
+      </button>
+      <div id="notifPanel" class="notif-panel hidden">
+        <div class="notif-head">Bildirimler</div>
+        <div id="notifList" class="notif-list">Yükleniyor…</div>
+        <div class="notif-head">Davetler</div>
+        <div id="inviteList" class="notif-list">Yükleniyor…</div>
+      </div>
+    </div>
+
+    <div class="profile" id="profileBtn" title="Profil">
+      <img src="placeholder_light_gray_block.png" alt="Profil" id="profileImage"/>
+      <span id="loginText">Giriş Yapın</span>
+    </div>
+  </div>
+</header>
+
+
+      <div class="content">
+        <div class="view-container">
+          <h2>Yeni Teamspace Oluştur</h2>
+          <div class="task-form" id="createBox">
+            <input type="text" id="teamspace-name" placeholder="Teamspace Adı" />
+            <textarea id="teamspace-description" placeholder="Açıklama (isteğe bağlı)"></textarea>
+            <button id="createBtn" class="btn primary">Oluştur</button>
+          </div>
+
+          <div class="toolbar" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:12px;">
+            <input type="search" id="searchBox" placeholder="Ara: ad veya açıklama…" />
+            <button id="refreshBtn" class="ghost">Yenile</button>
+          </div>
+
+          <h3>Teamspaceler</h3>
+          <div id="list" class="ts-grid">
+            <div class="ts-card" style="opacity:.6">Yükleniyor…</div>
+            <div class="ts-card" style="opacity:.6">Yükleniyor…</div>
+            <div class="ts-card" style="opacity:.6">Yükleniyor…</div>
+          </div>
+
+          <div id="emptyState" class="empty-hint" style="display:none">
+            Henüz teamspace yok. İlkini oluştur.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="teamspaces.js"></script>
+  <script type="module" src="notifications.js"></script>
+  <script type="module" src="theme.js"></script>
+
+
+</body>
+</html>

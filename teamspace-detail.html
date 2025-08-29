@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Teamspace Detayı – Formstill</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="dashboard-body">
+  <div class="dashboard">
+    <aside class="sidebar">
+      <a href="home.html" class="logo">formStill</a>
+      <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a class="active" href="teamspaces.html">Teamspaces</a></li>
+        <li><a href="profile.html">Profil</a></li>
+      </ul>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="left">
+          <a class="crumb" href="teamspaces.html">← Teamspaces</a>
+          <span id="ts-scope-badge" class="scope-badge">Teamspace</span>
+        </div>
+
+  <div class="right" style="display:flex; align-items:center; gap:12px;">
+          <!-- Bildirim çanı -->
+          <div class="notif-wrap">
+            <button id="notifBell" class="notif-bell" title="Bildirimler">
+              🔔<span id="notifCount" class="badge hidden">0</span>
+            </button>
+            <div id="notifPanel" class="notif-panel hidden">
+              <div class="notif-head">Bildirimler</div>
+              <div id="notifList" class="notif-list">Yükleniyor…</div>
+              <div class="notif-head">Davetler</div>
+              <div id="inviteList" class="notif-list">Yükleniyor…</div>
+            </div>
+          </div>
+
+          <div class="user">
+            <button id="profileBtn" class="ghost small">Profil</button>
+          </div>
+        </div>
+      </header>
+
+      <div class="content">
+        <div class="view-container">
+          <div class="ts-head">
+            <h2 id="ts-name">Yükleniyor…</h2>
+            <p id="ts-description" class="tags"></p>
+          </div>
+
+          <section class="board">
+            <h3 style="margin-bottom:12px;">Board</h3>
+
+            <div class="board-controls">
+              <input id="taskTitle" type="text" placeholder="Görev başlığı" />
+              <textarea id="taskDesc" rows="1" placeholder="Görev açıklaması"></textarea>
+              <select id="taskStatus">
+                <option value="todo">Yapılacak</option>
+                <option value="in_progress">Devam Ediyor</option>
+                <option value="done">Tamamlandı</option>
+              </select>
+              <button id="addBtn" class="btn primary">Ekle</button>
+            </div>
+
+            <!-- Üye Davet Et (sadece owner’a gösterilecek) -->
+            <div id="inviteWrap" class="task-form hidden" style="display:grid; grid-template-columns:1fr auto; gap:8px; align-items:center;">
+              <input id="inviteEmail" type="email" placeholder="Üye e-postası" />
+              <button id="inviteBtn" class="btn">Davet Et</button>
+            </div>
+
+            <div class="board-columns">
+              <div class="board-col">
+                <h3>Yapılacak</h3>
+                <div id="list-todo" class="task-list droppable" data-status="todo"></div>
+              </div>
+              <div class="board-col">
+                <h3>Devam Ediyor</h3>
+                <div id="list-in_progress" class="task-list droppable" data-status="in_progress"></div>
+              </div>
+              <div class="board-col">
+                <h3>Tamamlandı</h3>
+                <div id="list-done" class="task-list droppable" data-status="done"></div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script type="module" src="teamspace-detail.js"></script>
+  <script type="module" src="notifications.js"></script>
+  <script type="module" src="theme.js"></script>
+
+</body>
+</html>

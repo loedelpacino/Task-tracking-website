@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Giriş Yap - Formstill</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="login-container">
+    <h2>Formstill Giriş</h2>
+    <input type="email" id="email" placeholder="E-posta" />
+    <input type="password" id="password" placeholder="Şifre" />
+    <label class="remember-label"><input type="checkbox" id="rememberMe" /> Beni Hatırla</label>
+    <button id="loginBtn">Giriş Yap</button>
+    <p>Hesabın yok mu? <a href="register.html">Kayıt Ol</a></p>
+    <p id="message" style="margin-top: 10px;"></p>
+  </div>
+
+  <script type="module">
+    import { auth } from './firebase-config.js';
+    import { signInWithEmailAndPassword, setPersistence, browserLocalPersistence, browserSessionPersistence } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const rememberMe = document.getElementById('rememberMe');
+    const message = document.getElementById('message');
+
+    window.addEventListener('load', () => {
+      const savedEmail = localStorage.getItem("savedEmail");
+      if (savedEmail) { emailInput.value = savedEmail; rememberMe.checked = true; }
+    });
+
+    document.getElementById('loginBtn').addEventListener('click', async () => {
+      const email = emailInput.value.trim();
+      const password = passwordInput.value;
+      message.style.color = 'inherit';
+      message.innerText = 'Giriş yapılıyor...';
+      try {
+        await setPersistence(auth, rememberMe.checked ? browserLocalPersistence : browserSessionPersistence);
+        await signInWithEmailAndPassword(auth, email, password);
+        if (rememberMe.checked) localStorage.setItem("savedEmail", email); else localStorage.removeItem("savedEmail");
+        localStorage.setItem("username", email.split('@')[0]);
+        message.style.color = 'green';
+        message.innerText = '✅ Giriş başarılı! Yönlendiriliyorsunuz...';
+        setTimeout(() => location.href = 'home.html', 600);
+      } catch (error) {
+        message.style.color = 'red';
+        message.innerText = `❌ ${error.message}`;
+      }
+    });
+  </script>
+
+</body>
+</html>

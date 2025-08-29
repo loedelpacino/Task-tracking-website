@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kayıt Ol - Formstill</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="login-container">
+    <h2>Formstill Kayıt</h2>
+    <input type="text" id="name" placeholder="İsminiz" />
+    <input type="email" id="email" placeholder="E-posta" />
+    <input type="password" id="password" placeholder="Şifre" />
+    <button id="registerBtn">Kayıt Ol</button>
+    <p>Zaten hesabın var mı? <a href="login.html">Giriş Yap</a></p>
+    <p id="message" style="margin-top: 10px;"></p>
+  </div>
+
+  <script type="module">
+    import { auth, db } from './firebase-config.js';
+    import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+    import { ref, set } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+    document.getElementById('registerBtn').addEventListener('click', async () => {
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const message = document.getElementById('message');
+      if (!name || !email || !password) { message.style.color = 'red'; message.innerText = '❗Lütfen tüm alanları doldurun.'; return; }
+      message.style.color = 'inherit'; message.innerText = 'Kayıt işlemi yapılıyor...';
+      try {
+        const { user } = await createUserWithEmailAndPassword(auth, email, password);
+        await set(ref(db, 'users/' + user.uid), { name, email, createdAt: new Date().toISOString() });
+        localStorage.setItem('username', name);
+        message.style.color = 'green'; message.innerText = '✅ Kayıt başarılı! Yönlendiriliyorsunuz...';
+        setTimeout(() => location.href = 'login.html', 800);
+      } catch (error) {
+        message.style.color = 'red'; message.innerText = `❌ ${error.message}`;
+      }
+    });
+  </script>
+</body>
+</html>
